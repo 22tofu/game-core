@@ -1,19 +1,37 @@
-function ListGroup() {
-  const listItems = [
-    { id: 1, name: "New York" },
-    { id: 2, name: "San Francisco" },
-    { id: 3, name: "Tokyo" },
-    { id: 4, name: "London" },
-    { id: 5, name: "Paris" },
-  ];
+import { useState } from "react";
+
+interface Items {
+  id: number;
+  name: string;
+}
+interface ListProps {
+  items: Items[];
+  header: string;
+  onSelectItem: (name: string) => void;
+}
+
+function ListGroup({ items, header, onSelectItem }: ListProps) {
+  let [selectedItem, setSelectedItem] = useState<number>(-1);
+
   return (
     <>
-      <h1>List</h1>
-      {listItems.length === 0 && <p>No items found</p>}
+      <h1>{header}</h1>
+      {items.length === 0 && <p>No items found</p>}
       <ul className="list-group">
-        {listItems.map((item) => {
+        {items.map((item) => {
           return (
-            <li className="list-group-item" key={item.id}>
+            <li
+              className={
+                selectedItem === item.id
+                  ? "list-group-item active"
+                  : "list-group-item"
+              }
+              key={item.id}
+              onClick={() => {
+                setSelectedItem(item.id);
+                onSelectItem(item.name);
+              }}
+            >
               {item.name}
             </li>
           );
