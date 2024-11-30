@@ -2,7 +2,10 @@ import { useState } from "react";
 import Message from "./Message";
 import Alert from "./components/Alert";
 import Button from "./components/Button";
-import ListGroup from "./components/ListGroup";
+import ListGroup from "./components/ListGroup"; //import the ListGroup using index.ts
+import "./App.css";
+import { BsFillCalendarFill } from "react-icons/bs";
+import Like from "./components/Like/Like";
 
 function App() {
   const handleSelectItem = (name: string) => {
@@ -34,6 +37,8 @@ function App() {
         color="primary"
         onClickEvent={() => showMessage(true)}
       />
+      <br />
+      <Like onClickEvent={() => console.log("liked")} />
     </>
   );
 }
