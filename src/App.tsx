@@ -6,8 +6,21 @@ import ListGroup from "./components/ListGroup"; //import the ListGroup using ind
 import "./App.css";
 import { BsFillCalendarFill } from "react-icons/bs";
 import Like from "./components/Like/Like";
+import NavBar from "./components/NavBar";
+import Cart from "./components/Cart/Cart";
+import produce from "immer";
 
 function App() {
+  const [cartItems, setCartItems] = useState([
+    "Product1",
+    "Product2",
+    "Product3",
+  ]);
+
+  const handleCart = () => {
+    setCartItems([...cartItems, "wew"]);
+  };
+
   const handleSelectItem = (name: string) => {
     console.log(name);
   };
@@ -39,6 +52,14 @@ function App() {
       />
       <br />
       <Like onClickEvent={() => console.log("liked")} />
+
+      <NavBar cartItemsCount={cartItems.length} />
+      <Cart
+        cartItems={cartItems}
+        // addCartItem={() => setCartItems([...cartItems, "New Product"])}
+        addCartItem={handleCart}
+        onClear={() => setCartItems([])}
+      />
     </>
   );
 }
