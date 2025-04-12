@@ -9,6 +9,7 @@ import Like from "./components/Like/Like";
 import NavBar from "./components/NavBar";
 import Cart from "./components/Cart/Cart";
 import produce from "immer";
+import Form from "./components/Form";
 
 function App() {
   const [cartItems, setCartItems] = useState([
@@ -60,6 +61,7 @@ function App() {
         addCartItem={handleCart}
         onClear={() => setCartItems([])}
       />
+      <Form></Form>
     </>
   );
 }
